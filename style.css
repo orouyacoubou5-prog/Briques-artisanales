@@ -1,0 +1,55 @@
+/* Style général */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* En-tête */
+header {
+  background-color: #b73225; /* Couleur rouge brique */
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header p {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Contenu principal */
+main {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+.services {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.services h2 {
+  color: #b73225;
+  margin-top: 0;
+}
+
+.services ul {
+  padding-left: 20px;
+}
+
+.services li {
+  margin-bottom: 10px;
+}
