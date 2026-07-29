@@ -3,30 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moulage Artisanal de Briques</title>
+  <title>Briques Artisanales - Qualité & Solidité</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- En-tête -->
   <header>
-    <div class="logo">
-      <h1>Briques Artisanales</h1>
-      <p>Qualité & Solidité Moulées à la Main</p>
-    </div>
+    <h1>Briques Artisanales</h1>
+    <p>Fabrication sur Chantier & Moulage à la Main</p>
   </header>
 
-  <!-- Section Principale -->
   <main>
-    <section class="services">
+    <!-- Section Services -->
+    <section class="card">
       <h2>Nos Services</h2>
       <ul>
-        <li>Fabrication artisanale de briques de qualité</li>
-        <li>Briques solides moulées à la main</li>
-        <li>Livraison sur chantier</li>
+        <li>Fabrication de briques directement sur votre chantier</li>
+        <li>Moulage artisanal de briques de 15, 12 et 10</li>
+        <li>Travail solide, rapide et de qualité</li>
       </ul>
+    </section>
+
+    <!-- Section Contact WhatsApp & Facebook -->
+    <section class="card">
+      <h2>Nous Contacter & Commander</h2>
+      <p>Passez votre commande ou demandez un devis directement :</p>
+      
+      <!-- Bouton WhatsApp Direct -->
+      <a href="https://wa.me/2290169229198?text=Bonjour,%20je%20souhaite%20commander%20des%20briques%20artisanales." 
+         target="_blank" 
+         class="btn btn-whatsapp">
+         💬 Discuter sur WhatsApp (+229 01 69 22 91 98)
+      </a>
+
+      <!-- Bouton Facebook Direct -->
+      <a href="https://www.facebook.com/profile.php?id=100082073229486" 
+         target="_blank" 
+         class="btn btn-facebook">
+         👍 Voir notre page Facebook
+      </a>
+    </section>
+
+    <!-- Section Calculateur -->
+    <section class="card">
+      <h2>Estimer vos besoins en briques</h2>
+      <form id="calc-form">
+        <label for="typeBrique">Type de brique :</label>
+        <select id="typeBrique">
+          <option value="Brique de 15">Brique de 15 (40 × 15 × 20 cm)</option>
+          <option value="Brique de 12">Brique de 12 (40 × 12 × 20 cm)</option>
+          <option value="Brique de 10">Brique de 10 (40 × 10 × 20 cm)</option>
+        </select>
+
+        <label for="longueur">Longueur du mur (en mètres) :</label>
+        <input type="number" id="longueur" placeholder="Ex: 10" required min="1">
+
+        <label for="hauteur">Hauteur du mur (en mètres) :</label>
+        <input type="number" id="hauteur" placeholder="Ex: 3" required min="1">
+
+        <button type="button" id="btn-calculer" class="btn btn-calcul">Calculer le nombre de briques</button>
+      </form>
+
+      <div id="resultat" class="resultat-box" style="display:none;">
+        <p>Estimation : <strong id="totalBriques">0</strong> briques nécessaires.</p>
+        <button id="btn-whatsapp-calc" class="btn btn-whatsapp">
+          💬 Commander cette quantité sur WhatsApp
+        </button>
+      </div>
     </section>
   </main>
 
+  <footer>
+    <p>&copy; 2026 Moulage Artisanal de Briques. Tous droits réservés.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
