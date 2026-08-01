@@ -22,7 +22,7 @@
     }
     header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 15px;
     }
     h1 {
       color: #b23b18;
@@ -32,6 +32,19 @@
     p.subtitle {
       color: #666;
       font-size: 0.95rem;
+    }
+    /* Bannière de bienvenue */
+    .welcome-banner {
+      background-color: #ffebe6;
+      border: 1px solid #ffc2b3;
+      border-radius: 10px;
+      padding: 12px 15px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #8c2d12;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     .card {
       background: white;
@@ -94,6 +107,19 @@
       display: none;
       line-height: 1.6;
     }
+    .location-box {
+      background: #ffffff;
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .location-box h3 {
+      color: #b23b18;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
     .whatsapp-btn {
       display: inline-block;
       width: 100%;
@@ -104,7 +130,6 @@
       padding: 14px;
       border-radius: 8px;
       font-weight: bold;
-      margin-top: 15px;
       font-size: 1.05rem;
     }
     /* Style de la galerie */
@@ -150,6 +175,11 @@
     <p class="subtitle">Moulage de qualité supérieure directement sur votre chantier</p>
   </header>
 
+  <!-- Message de bienvenue -->
+  <div class="welcome-banner">
+    👋 Bienvenue sur le site des briques artisanales de Pèrèrè !
+  </div>
+
   <!-- Bouton pour afficher/masquer la galerie -->
   <button class="btn-gallery" onclick="toggleGallery()">📷 Voir exemples de notre travail</button>
 
@@ -187,6 +217,15 @@
     <button class="btn-main" onclick="calculer()">Calculer mon besoin</button>
 
     <div id="resultat" class="result"></div>
+  </div>
+
+  <!-- Section Localisation -->
+  <div class="location-box">
+    <h3>📍 Notre Localisation</h3>
+    <p><strong>Ville / Commune :</strong> Pèrèrè</p>
+    <p><strong>Quartier :</strong> Tisserou</p>
+    <p><strong>Repère :</strong> Maison Bouyon</p>
+    <p style="margin-top: 8px; font-style: italic; color: #555;">💡 Déplacement directement sur vos chantiers pour le moulage sur place.</p>
   </div>
 
   <a href="https://wa.me/2290169229198?text=Bonjour,%20je%20souhaite%20commander%20des%20briques." class="whatsapp-btn">
