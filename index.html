@@ -86,6 +86,21 @@
     button.btn-main:hover {
       background-color: #8c2d12;
     }
+    button.btn-copy {
+      width: 100%;
+      padding: 10px;
+      background-color: #4a5568;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button.btn-copy:hover {
+      background-color: #2d3748;
+    }
     button.btn-gallery {
       width: 100%;
       padding: 12px;
@@ -102,6 +117,7 @@
     button.btn-gallery:hover {
       background-color: #1a252f;
     }
+    /* Animation pour le résultat */
     .result {
       margin-top: 15px;
       padding: 15px;
@@ -110,6 +126,11 @@
       border-radius: 8px;
       display: none;
       line-height: 1.6;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .services-list {
       list-style-type: disc;
@@ -238,6 +259,7 @@
     <button class="btn-main" onclick="calculer()">Calculer mon besoin</button>
 
     <div id="resultat" class="result"></div>
+    <button id="btn-copier" class="btn-copy" style="display:none;" onclick="copierDevis()">📋 Copier le résultat</button>
   </div>
 
   <!-- Section Localisation -->
@@ -267,13 +289,11 @@
   </div>
 
   <script>
+    let texteDevis = "";
+
     function toggleGallery() {
       const g = document.getElementById('gallery-container');
-      if (g.style.display === 'grid') {
-        g.style.display = 'none';
-      } else {
-        g.style.display = 'grid';
-      }
+      g.style.display = (g.style.display === 'grid') ? 'none' : 'grid';
     }
 
     function openModal(src) {
@@ -288,7 +308,9 @@
     function calculer() {
       const l = parseFloat(document.getElementById('longueur').value);
       const h = parseFloat(document.getElementById('hauteur').value);
-      const briquesParSac = parseFloat(document.getElementById('type').value);
+      const typeSelect = document.getElementById('type');
+      const briquesParSac = parseFloat(typeSelect.value);
+      const nomBrique = typeSelect.options[typeSelect.selectedIndex].text;
       
       if (!l || !h || l <= 0 || h <= 0) {
         alert("Veuillez entrer des mesures valides.");
@@ -299,12 +321,50 @@
       const nbBriques = Math.ceil(surface * 12.5);
       const nbSacs = Math.ceil(nbBriques / briquesParSac);
       
+      texteDevis = `📐 Devis Briques Pèrèrè :\n- Type : ${nomBrique}\n- Surface : ${surface} m²\n- Briques : ~${nbBriques}\n- Ciment : ~${nbSacs} sac(s)`;
+
       const res = document.getElementById('resultat');
       res.innerHTML = "📐 <strong>Surface :</strong> " + surface + " m²<br>" +
                       "🧱 <strong>Briques estimées :</strong> Environ <strong>" + nbBriques + " briques</strong><br>" +
                       "📦 <strong>Ciment nécessaire :</strong> Environ <strong>" + nbSacs + " sac(s)</strong> (base : " + briquesParSac + " briques/sac)";
       res.style.display = 'block';
+      document.getElementById('btn-copier').style.display = 'block';
+
+      // Enregistrement dans LocalStorage
+      localStorage.setItem('dernierCalcul', JSON.stringify({
+        longueur: l,
+        hauteur: h,
+        type: typeSelect.value,
+        htmlResultat: res.innerHTML,
+        devis: texteDevis
+      }));
     }
+
+    function copierDevis() {
+      if (texteDevis) {
+        navigator.clipboard.writeText(texteDevis).then(() => {
+          alert("✅ Résultat copié ! Vous pouvez le coller sur WhatsApp ou dans vos notes.");
+        });
+      }
+    }
+
+    // Charger le dernier calcul au démarrage
+    window.onload = function() {
+      const sauvgarde = localStorage.getItem('dernierCalcul');
+      if (sauvgarde) {
+        const data = JSON.parse(sauvgarde);
+        document.getElementById('longueur').value = data.longueur;
+        document.getElementById('hauteur').value = data.hauteur;
+        document.getElementById('type').value = data.type;
+        
+        const res = document.getElementById('resultat');
+        res.innerHTML = data.htmlResultat;
+        res.style.display = 'block';
+        
+        texteDevis = data.devis;
+        document.getElementById('btn-copier').style.display = 'block';
+      }
+    };
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js');
