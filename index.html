@@ -3,80 +3,238 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Briques Artisanales - Qualité & Solidité</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Briques Artisanales BTP</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#b23b18">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #f7f4f0;
+      color: #333;
+      padding: 20px 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    h1 {
+      color: #b23b18;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #444;
+    }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+    button.btn-main {
+      width: 100%;
+      padding: 14px;
+      background-color: #b23b18;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button.btn-main:hover {
+      background-color: #8c2d12;
+    }
+    button.btn-gallery {
+      width: 100%;
+      padding: 12px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background 0.3s;
+    }
+    button.btn-gallery:hover {
+      background-color: #1a252f;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 15px;
+      background: #fff3ed;
+      border-left: 4px solid #b23b18;
+      border-radius: 4px;
+      display: none;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 15px;
+      font-size: 1.05rem;
+    }
+    /* Style de la galerie */
+    #gallery-container {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+    .gallery-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      transition: transform 0.2s;
+    }
+    .gallery-img:hover {
+      transform: scale(1.03);
+    }
+    /* Modal pour agrandir la photo */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+    }
+    #modal img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
 
   <header>
-    <h1>Briques Artisanales</h1>
-    <p>Fabrication sur Chantier & Moulage à la Main</p>
+    <h1>Briques Artisanales BTP</h1>
+    <p class="subtitle">Moulage de qualité supérieure directement sur votre chantier</p>
   </header>
 
-  <main>
-    <!-- Section Services -->
-    <section class="card">
-      <h2>Nos Services</h2>
-      <ul>
-        <li>Fabrication de briques directement sur votre chantier</li>
-        <li>Moulage artisanal de briques de 15, 12 et 10</li>
-        <li>Travail solide, rapide et de qualité</li>
-      </ul>
-    </section>
+  <!-- Bouton pour afficher/masquer la galerie -->
+  <button class="btn-gallery" onclick="toggleGallery()">📷 Voir exemples de notre travail</button>
 
-    <!-- Section Contact WhatsApp & Facebook -->
-    <section class="card">
-      <h2>Nous Contacter & Commander</h2>
-      <p>Passez votre commande ou demandez un devis directement :</p>
+  <!-- Galerie des photos -->
+  <div id="gallery-container">
+    <img src="IMG_20250119_074711_208.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Briques alignées">
+    <img src="IMG_20250119_074715_010.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Fabrication de briques">
+    <img src="IMG_20250701_064913_749.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Travail sur chantier">
+    <img src="IMG_20250701_064942_560.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Rangees de briques">
+    <img src="Snapchat-596585300.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Artisan au travail">
+    <img src="Snapchat-794362922.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Production chantier">
+    <img src="IMG_20250511_182731_895.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Briques de terre">
+    <img src="IMG_20250511_182736_252.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Chantier de briques">
+  </div>
+
+  <!-- Calculateur -->
+  <div class="card">
+    <h2>Simulateur de Besoins</h2>
+    <br>
+    <label for="type">Type de brique :</label>
+    <select id="type">
+      <option value="10">Brique de 10 cm (Cloison)</option>
+      <option value="12">Brique de 12 cm</option>
+      <option value="15">Brique de 15 cm (Mur porteur)</option>
+    </select>
+
+    <label for="longueur">Longueur totale des murs (mètres) :</label>
+    <input type="number" id="longueur" placeholder="Exemple: 20">
+
+    <label for="hauteur">Hauteur des murs (mètres) :</label>
+    <input type="number" id="hauteur" placeholder="Exemple: 3" value="3">
+
+    <button class="btn-main" onclick="calculer()">Calculer mon besoin</button>
+
+    <div id="resultat" class="result"></div>
+  </div>
+
+  <a href="https://wa.me/2290169229198?text=Bonjour,%20je%20souhaite%20commander%20des%20briques." class="whatsapp-btn">
+    💬 Commander via WhatsApp (+229 01 69 22 91 98)
+  </a>
+
+  <!-- Image agrandie -->
+  <div id="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Agrandissement">
+  </div>
+
+  <script>
+    function toggleGallery() {
+      const g = document.getElementById('gallery-container');
+      if (g.style.display === 'grid') {
+        g.style.display = 'none';
+      } else {
+        g.style.display = 'grid';
+      }
+    }
+
+    function openModal(src) {
+      document.getElementById('modal-img').src = src;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function calculer() {
+      const l = parseFloat(document.getElementById('longueur').value);
+      const h = parseFloat(document.getElementById('hauteur').value);
       
-      <!-- Bouton WhatsApp Direct -->
-      <a href="https://wa.me/2290169229198?text=Bonjour,%20je%20souhaite%20commander%20des%20briques%20artisanales." 
-         target="_blank" 
-         class="btn btn-whatsapp">
-         💬 Discuter sur WhatsApp (+229 01 69 22 91 98)
-      </a>
+      if (!l || !h || l <= 0 || h <= 0) {
+        alert("Veuillez entrer des mesures valides.");
+        return;
+      }
+      
+      const surface = l * h;
+      const nbBriques = Math.ceil(surface * 12.5);
+      
+      const res = document.getElementById('resultat');
+      res.innerHTML = "<strong>Surface totale :</strong> " + surface + " m²<br>" +
+                      "<strong>Estimation :</strong> Environ <strong>" + nbBriques + " briques</strong> nécessaires.";
+      res.style.display = 'block';
+    }
 
-      <!-- Bouton Facebook Direct -->
-      <a href="https://www.facebook.com/profile.php?id=100082073229486" 
-         target="_blank" 
-         class="btn btn-facebook">
-         👍 Voir notre page Facebook
-      </a>
-    </section>
-
-    <!-- Section Calculateur -->
-    <section class="card">
-      <h2>Estimer vos besoins en briques</h2>
-      <form id="calc-form">
-        <label for="typeBrique">Type de brique :</label>
-        <select id="typeBrique">
-          <option value="Brique de 15">Brique de 15 (40 × 15 × 20 cm)</option>
-          <option value="Brique de 12">Brique de 12 (40 × 12 × 20 cm)</option>
-          <option value="Brique de 10">Brique de 10 (40 × 10 × 20 cm)</option>
-        </select>
-
-        <label for="longueur">Longueur du mur (en mètres) :</label>
-        <input type="number" id="longueur" placeholder="Ex: 10" required min="1">
-
-        <label for="hauteur">Hauteur du mur (en mètres) :</label>
-        <input type="number" id="hauteur" placeholder="Ex: 3" required min="1">
-
-        <button type="button" id="btn-calculer" class="btn btn-calcul">Calculer le nombre de briques</button>
-      </form>
-
-      <div id="resultat" class="resultat-box" style="display:none;">
-        <p>Estimation : <strong id="totalBriques">0</strong> briques nécessaires.</p>
-        <button id="btn-whatsapp-calc" class="btn btn-whatsapp">
-          💬 Commander cette quantité sur WhatsApp
-        </button>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Moulage Artisanal de Briques. Tous droits réservés.</p>
-  </footer>
-
-  <script src="script.js"></script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
 </body>
 </html>
