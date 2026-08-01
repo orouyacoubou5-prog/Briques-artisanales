@@ -53,6 +53,10 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       margin-bottom: 20px;
     }
+    .card h2, .card h3 {
+      color: #b23b18;
+      margin-bottom: 12px;
+    }
     label {
       display: block;
       font-weight: bold;
@@ -107,18 +111,24 @@
       display: none;
       line-height: 1.6;
     }
-    .location-box {
-      background: #ffffff;
-      padding: 18px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
-      line-height: 1.6;
+    .services-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      line-height: 1.8;
+      color: #444;
     }
-    .location-box h3 {
-      color: #b23b18;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
+    .facebook-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: #1877F2;
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 10px;
     }
     .whatsapp-btn {
       display: inline-block;
@@ -131,6 +141,7 @@
       border-radius: 8px;
       font-weight: bold;
       font-size: 1.05rem;
+      margin-top: 10px;
     }
     /* Style de la galerie */
     #gallery-container {
@@ -195,6 +206,16 @@
     <img src="IMG_20250511_182736_252.jpg" class="gallery-img" onclick="openModal(this.src)" alt="Chantier de briques">
   </div>
 
+  <!-- Section Nos Services -->
+  <div class="card">
+    <h3>Nos Services</h3>
+    <ul class="services-list">
+      <li>Fabrication de briques directement sur votre chantier</li>
+      <li>Moulage artisanal de briques de 15, 12, 10 et ODI</li>
+      <li>Travail solide, rapide et de qualité</li>
+    </ul>
+  </div>
+
   <!-- Calculateur -->
   <div class="card">
     <h2>Simulateur de Besoins</h2>
@@ -220,7 +241,7 @@
   </div>
 
   <!-- Section Localisation -->
-  <div class="location-box">
+  <div class="card">
     <h3>📍 Notre Localisation</h3>
     <p><strong>Ville / Commune :</strong> Pèrèrè</p>
     <p><strong>Quartier :</strong> Tisserou</p>
@@ -228,6 +249,14 @@
     <p style="margin-top: 8px; font-style: italic; color: #555;">💡 Déplacement directement sur vos chantiers pour le moulage sur place.</p>
   </div>
 
+  <!-- Section Facebook -->
+  <div class="card">
+    <h3>Me contacter sur Facebook</h3>
+    <p style="margin-bottom: 10px; color: #555;">Vous pouvez visiter mon profil Facebook pour suivre mes réalisations :</p>
+    <a href="https://www.facebook.com/profile.php?id=100082073229486" target="_blank" class="facebook-btn">Mon Profil Facebook</a>
+  </div>
+
+  <!-- Bouton WhatsApp -->
   <a href="https://wa.me/2290169229198?text=Bonjour,%20je%20souhaite%20commander%20des%20briques." class="whatsapp-btn">
     💬 Commander via WhatsApp (+229 01 69 22 91 98)
   </a>
